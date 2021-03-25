@@ -1,0 +1,15 @@
+.data-column {
+    display: flex;
+    border: 1px solid #183a79;
+    background-color: #3e67b3;
+    width: 100px;
+    height: 200px;
+
+
+}
+
+.data-column span {
+    width: 100%;
+    align-self: flex-end;
+    text-align: center;
+}
