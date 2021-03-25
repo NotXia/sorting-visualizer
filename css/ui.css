@@ -1,0 +1,36 @@
+body {
+    background-color: #4b4b4b;
+    font-family: Raleway;
+    margin: 0;
+    padding: 0;
+}
+
+.center {
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+
+.app-container {
+    height: 100vh; 
+    width: 100vw;
+}
+
+.ui-group {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.data-container {
+    border: 1px solid white;
+    width: 50vw;
+    height: 50vh;
+}
+
+/* phones */
+@media only screen and (max-width: 767px) {
+    .data-container {
+        width: 95vw;
+        height: 50vh;
+    }
+}
