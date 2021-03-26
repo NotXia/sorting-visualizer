@@ -7,6 +7,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="css/ui.css">
         <link rel="stylesheet" href="css/data.css">
+        <link rel="stylesheet" href="css/switch.css">
         <title>Sorting visualizer</title>
     </head>
 
@@ -14,9 +15,17 @@
         <div class="app-container center">
             <div>
                 <div class="center ui-group">
-                    <select name="" id="">
-                        <option value="Insertion">Algorithm</option>
-                    </select>
+                    <div class="toolbar-group">
+                        <select name="" id="">
+                            <option value="Insertion">Algorithm</option>
+                        </select>
+                    </div>
+
+                    <div class="toolbar-group">
+                        <label for="view_toggle" class="toggle-label" id="view_label">Columns</label>
+                        <input class="toggle-input" type="checkbox" id="view_toggle" />
+                        <label class="toggle-slider" for="view_toggle"></label>
+                    </div>
                 </div>
     
                 <div id="data_container" class="data-container ui-group"></div>

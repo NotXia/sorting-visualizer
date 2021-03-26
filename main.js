@@ -1,4 +1,5 @@
 import { ColumnsView } from "./js/graphic/columns.js";
+import { DotsView } from "./js/graphic/dots.js";
 import { SelectionSort } from "./js/algorithms/SelectionSort.js";
 
 function generate(size) {
@@ -9,9 +10,11 @@ function generate(size) {
     return out;
 }
 
+var view = new ColumnsView("data_container");
+var data = [];
+
 $("#start_button").click(async () => {
-    var data = generate(20);
-    var view = new ColumnsView("data_container")
+    data = generate(20);
     var sort = new SelectionSort(data);
 
     view.render(data);
@@ -20,6 +23,19 @@ $("#start_button").click(async () => {
         await new Promise(r => setTimeout(r, 20));
         let modifiedIndex = sort.nextStep();
         view.update(data, modifiedIndex);
+    }
+
+    view.render(data);
+});
+
+$("#view_toggle").click(() => {
+    if ($("#view_toggle").is(':checked')) {
+        view = new DotsView("data_container");
+        $("#view_label").html("Dots");
+    }
+    else {
+        view = new ColumnsView("data_container");
+        $("#view_label").html("Columns");
     }
 
     view.render(data);

@@ -1,0 +1,42 @@
+.toggle-input {
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+.toggle-slider {
+	cursor: pointer;
+	width: 3em;
+	height: 1.6em;
+	background: #577eb1;
+	display: block;
+	border-radius: 2em;
+	position: relative;
+}
+
+.toggle-slider:after {
+	content: '';
+	position: absolute;
+	top: 0.2em;
+	left: 0.2em;
+	width: 1.2em;
+	height: 1.2em;
+	background: #ffffff;
+	border-radius: 50%;
+	transition: 0.3s;
+}
+
+.toggle-input:checked + .toggle-slider {
+	background: #577eb1;
+}
+
+.toggle-input:checked + .toggle-slider:after {
+	left: calc(100% - 1.4em);
+}
+
+
+.toggle-label {
+    color: white;
+    width: 5em;
+    text-align: right;
+}

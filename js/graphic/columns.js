@@ -1,5 +1,8 @@
-export class ColumnsView {
+import { View } from "./View.js";
+
+export class ColumnsView extends View {
     constructor(container_id) {
+        super();
         this.container_id = container_id;
         this.prevModifiedIndexes = [];
     }
@@ -43,14 +46,14 @@ export class ColumnsView {
         
         this.prevModifiedIndexes.forEach(index => {
             let column = $(`#${this.getColumnId(index)}`);
-            column.removeClass("affected-column");
+            column.removeClass("affected-data");
         });
 
         this.prevModifiedIndexes = modifiedIndex;
         modifiedIndex.forEach(index => {
             let column = $(`#${this.getColumnId(index)}`);
             column.css({ width: `${size.width}px`, height: `${(size.unit_height * data[index])}px` });
-            column.addClass("affected-column");
+            column.addClass("affected-data");
         });
     }
 }
