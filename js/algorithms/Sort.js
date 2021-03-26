@@ -4,7 +4,7 @@ export class Sort {
         this.viewController = viewController;
     }
 
-    start() {
+    async start() {
         throw new Error("Abstract class");
     }
 }
