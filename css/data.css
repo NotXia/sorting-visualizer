@@ -10,3 +10,8 @@
     text-align: center;
     color: #d6d6d6
 }
+
+.affected-column {
+    border: 1px solid #791818 !important;
+    background-color: #b33e3e !important;
+}
