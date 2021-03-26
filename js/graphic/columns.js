@@ -2,9 +2,7 @@ import { View } from "./View.js";
 
 export class ColumnsView extends View {
     constructor(container_id) {
-        super();
-        this.container_id = container_id;
-        this.prevModifiedIndexes = [];
+        super(container_id);
     }
 
     /* Returns the id of the column that represents the given index */

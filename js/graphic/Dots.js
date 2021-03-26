@@ -2,15 +2,15 @@ import { View } from "./View.js";
 
 export class DotsView extends View {
     constructor(container_id) {
-        super();
-        this.container_id = container_id;
-        this.prevModifiedIndexes = [];
+        super(container_id);
     }
 
+    /* Returns the id of the dot that represents the given index */
     getDotId(index) {
         return `dot${index}`;
     }
 
+    /* Returns the size for the dots adapted to the data length */
     getDotSize(data) {
         var container = $(`#${this.container_id}`);
 
@@ -20,6 +20,7 @@ export class DotsView extends View {
         };
     }
 
+    /* Clears the container and renders the dots */
     render(data) {
         var container = $(`#${this.container_id}`);
         container.html("");
@@ -44,6 +45,7 @@ export class DotsView extends View {
         }
     }
 
+    /* Restores the previously modified dots and updates the new modified dots */
     update(data, modifiedIndex) {
         var size = this.getDotSize(data);
 
