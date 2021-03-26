@@ -1,10 +1,10 @@
 export class Sort {
-    constructor(data) {
+    constructor(data, viewController) {
         this.data = data;
-        this.hasEnded = false;
+        this.viewController = viewController;
     }
 
-    nextStep() {
+    start() {
         throw new Error("Abstract class");
     }
 }

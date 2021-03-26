@@ -1,8 +1,8 @@
 import { View } from "./View.js";
 
 export class DotsView extends View {
-    constructor(container_id) {
-        super(container_id);
+    constructor(container_id, updateDelay) {
+        super(container_id, updateDelay);
     }
 
     /* Returns the id of the dot that represents the given index */
@@ -46,7 +46,7 @@ export class DotsView extends View {
     }
 
     /* Restores the previously modified dots and updates the new modified dots */
-    update(data, modifiedIndex) {
+    async update(data, modifiedIndex) {
         var size = this.getDotSize(data);
 
         this.prevModifiedIndexes.forEach(index => {
@@ -60,5 +60,7 @@ export class DotsView extends View {
             dot.css({ marginBottom: `${(size.unit_height * data[index])}px` });
             dot.addClass("affected-data");
         });
+
+        await new Promise(r => setTimeout(r, this.updateDelay));
     }
 }

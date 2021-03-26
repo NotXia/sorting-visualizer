@@ -10,33 +10,31 @@ function generate(size) {
     return out;
 }
 
-var view = new ColumnsView("data_container");
+var delay = 100;
+var viewController = new ColumnsView("data_container", delay);
 var data = [];
 
 $("#start_button").click(async () => {
-    data = generate(20);
-    var sort = new SelectionSort(data);
+    data = generate(10);
+    var sort = new SelectionSort(data, viewController);
+    $("#view_toggle").prop("disabled", true);
 
-    view.render(data);
-    
-    while(!sort.hasEnded) {
-        await new Promise(r => setTimeout(r, 20));
-        let modifiedIndex = sort.nextStep();
-        view.update(data, modifiedIndex);
-    }
+    viewController.render(data);
+    await sort.start();
+    viewController.render(data);
 
-    view.render(data);
+    $("#view_toggle").prop("disabled", false);
 });
 
-$("#view_toggle").click(() => {
+$("#view_toggle").change(() => {
     if ($("#view_toggle").is(':checked')) {
-        view = new DotsView("data_container");
+        viewController = new DotsView("data_container", delay);
         $("#view_label").html("Dots");
     }
     else {
-        view = new ColumnsView("data_container");
+        viewController = new ColumnsView("data_container", delay);
         $("#view_label").html("Columns");
     }
 
-    view.render(data);
+    viewController.render(data);
 });

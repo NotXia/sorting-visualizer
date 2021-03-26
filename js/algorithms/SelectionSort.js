@@ -1,45 +1,24 @@
 import { Sort } from "./Sort.js";
 
 export class SelectionSort extends Sort {
-    constructor(data) {
-        super(data);
-
-        this.i = 0;
-        this.j = 1;
-        this.curr_min_index = 0;
+    constructor(data, viewController) {
+        super(data, viewController);
     }
 
-    nextStep() {
-        if (this.hasEnded) { return; }
-
-        var modifiedIndexes = [];
-
-        if (this.j < this.data.length) {
-            modifiedIndexes.push(this.i);
-            modifiedIndexes.push(this.j);
-
-            if (this.data[this.j] < this.data[this.curr_min_index]) {
-                this.curr_min_index = this.j;
+    async start() {
+        for (let i=0; i<this.data.length-1; i++) {
+            let minIndex = i;
+            for (let j=i+1; j<this.data.length; j++) {
+                if (this.data[j] < this.data[minIndex]) {
+                    minIndex = j;
+                }
+                await this.viewController.update(this.data, [i, j]);
             }
 
-            this.j++;
+            let temp = this.data[minIndex];
+            this.data[minIndex] = this.data[i];
+            this.data[i] = temp;
+            await this.viewController.update(this.data, [i, minIndex]);
         }
-        else {
-            modifiedIndexes.push(this.i);
-            modifiedIndexes.push(this.curr_min_index);
-            
-            let temp = this.data[this.i];
-            this.data[this.i] = this.data[this.curr_min_index];
-            this.data[this.curr_min_index] = temp;
-            
-            this.i++;
-            if (this.i >= this.data.length-1) {
-                this.hasEnded = true;
-            }
-            this.j = this.i+1;
-            this.curr_min_index = this.i;
-        }
-
-        return modifiedIndexes;
     }
 }

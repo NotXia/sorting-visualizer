@@ -1,8 +1,8 @@
 import { View } from "./View.js";
 
 export class ColumnsView extends View {
-    constructor(container_id) {
-        super(container_id);
+    constructor(container_id, updateDelay) {
+        super(container_id, updateDelay);
     }
 
     /* Returns the id of the column that represents the given index */
@@ -39,9 +39,8 @@ export class ColumnsView extends View {
     }
 
     /* Restores the previously modified columns and updates the new modified columns */
-    update(data, modifiedIndex) {
+    async update(data, modifiedIndex) {
         var size = this.getColumnSize(data);
-        
         this.prevModifiedIndexes.forEach(index => {
             let column = $(`#${this.getColumnId(index)}`);
             column.removeClass("affected-data");
@@ -54,5 +53,7 @@ export class ColumnsView extends View {
             column.html(`<span>${data[index]}</span>`)
             column.addClass("affected-data");
         });
+
+        await new Promise(r => setTimeout(r, this.updateDelay));
     }
 }

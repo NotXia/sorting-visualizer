@@ -1,11 +1,12 @@
 export class View {
 
-    constructor(container_id) {
+    constructor(container_id, updateDelay) {
         if (this.constructor == View) {
             throw new Error("Abstract class");
         }
 
         this.container_id = container_id;
+        this.updateDelay = updateDelay;
         this.prevModifiedIndexes = [];
     }
 
