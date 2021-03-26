@@ -51,6 +51,7 @@ export class ColumnsView extends View {
         modifiedIndex.forEach(index => {
             let column = $(`#${this.getColumnId(index)}`);
             column.css({ width: `${size.width}px`, height: `${(size.unit_height * data[index])}px` });
+            column.html(`<span>${data[index]}</span>`)
             column.addClass("affected-data");
         });
     }
