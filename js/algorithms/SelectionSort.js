@@ -1,7 +1,8 @@
-export class SelectionSort {
+import { Sort } from "./Sort.js";
+
+export class SelectionSort extends Sort {
     constructor(data) {
-        this.hasEnded = false;
-        this.data = data;
+        super(data);
 
         this.i = 0;
         this.j = 1;
