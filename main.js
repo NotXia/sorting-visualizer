@@ -1,6 +1,7 @@
-import { ColumnsView } from "./js/graphic/columns.js";
-import { DotsView } from "./js/graphic/dots.js";
+import { ColumnsView } from "./js/graphic/Columns.js";
+import { DotsView } from "./js/graphic/Dots.js";
 import { SelectionSort } from "./js/algorithms/SelectionSort.js";
+import { MergeSort } from "./js/algorithms/MergeSort.js";
 
 function generate(size) {
     var out = [];
@@ -15,8 +16,8 @@ var viewController = new ColumnsView("data_container", delay);
 var data = [];
 
 $("#start_button").click(async () => {
-    data = generate(10);
-    var sort = new SelectionSort(data, viewController);
+    data = generate(20);
+    var sort = new MergeSort(data, viewController);
     $("#view_toggle").prop("disabled", true);
 
     viewController.render(data);
