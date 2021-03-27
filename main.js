@@ -3,6 +3,7 @@ import { DotsView } from "./js/graphic/Dots.js";
 import { SelectionSort } from "./js/algorithms/SelectionSort.js";
 import { MergeSort } from "./js/algorithms/MergeSort.js";
 import { QuickSort } from "./js/algorithms/QuickSort.js";
+import { InsertionSort } from "./js/algorithms/InsertionSort.js";
 
 function generate(size) {
     var out = [];
@@ -17,6 +18,9 @@ function getAlgorithm(data, viewController) {
         case "selection":
             return new SelectionSort(data, viewController);
 
+        case "insertion":
+            return new InsertionSort(data, viewController);
+
         case "merge":
             return new MergeSort(data, viewController);
 
@@ -28,7 +32,7 @@ function getAlgorithm(data, viewController) {
     }
 }
 
-var delay = 500;
+var delay = 100;
 var viewController = new ColumnsView("data_container", delay);
 var data = [];
 
