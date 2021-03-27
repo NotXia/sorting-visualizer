@@ -43,17 +43,24 @@ function getAlgorithm(data, viewController) {
 var delay = 500;
 var viewController = new ColumnsView("data_container", delay);
 var data = [];
+var executing = false;
 
 $("#start_button").click(async () => {
-    data = generate(20);
-    var sort = getAlgorithm(data, viewController);
-    $("#view_toggle").prop("disabled", true);
+    if (!executing) {
+        executing = true;
 
-    viewController.render(data);
-    await sort.start();
-    viewController.render(data);
+        data = generate(20);
+        var sort = getAlgorithm(data, viewController);
+        $("#view_toggle").prop("disabled", true);
+    
+        viewController.render(data);
+        await sort.start();
+        viewController.render(data);
+    
+        $("#view_toggle").prop("disabled", false);
 
-    $("#view_toggle").prop("disabled", false);
+        executing = false;
+    }
 });
 
 $("#view_toggle").change(() => {
