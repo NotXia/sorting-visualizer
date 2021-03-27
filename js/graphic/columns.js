@@ -29,7 +29,6 @@ export class ColumnsView extends View {
 
         for (let i = 0; i < data.length; i++) {
             let column = $("<div></div>")
-                .html(`<span>${data[i]}</span>`)
                 .addClass("data-column")
                 .attr({ id: this.getColumnId(i) })
                 .css({ width: `${size.width}px`, height: `${(size.unit_height * data[i])}px` });
@@ -51,7 +50,6 @@ export class ColumnsView extends View {
         for (let index in modifiedIndex) {
             let column = $(`#${this.getColumnId(index)}`);
             column.css({ width: `${size.width}px`, height: `${(size.unit_height * data[index])}px` });
-            column.html(`<span>${data[index]}</span>`)
             column.addClass(`datastatus-${modifiedIndex[index]}`);
         }
 
