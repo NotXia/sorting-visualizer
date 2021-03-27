@@ -2,6 +2,7 @@ import { ColumnsView } from "./js/graphic/Columns.js";
 import { DotsView } from "./js/graphic/Dots.js";
 import { SelectionSort } from "./js/algorithms/SelectionSort.js";
 import { MergeSort } from "./js/algorithms/MergeSort.js";
+import { QuickSort } from "./js/algorithms/QuickSort.js";
 
 function generate(size) {
     var out = [];
@@ -18,6 +19,9 @@ function getAlgorithm(data, viewController) {
 
         case "merge":
             return new MergeSort(data, viewController);
+
+        case "quick":
+            return new QuickSort(data, viewController);
 
         default:
             return null;

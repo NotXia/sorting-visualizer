@@ -29,3 +29,8 @@
     border: 1px solid #464646 !important;
     background-color: #8d8d8d !important;
 }
+
+.datastatus-highlight {
+    border: 1px solid #04881a !important;
+    background-color: #2f8f3f !important;
+}
