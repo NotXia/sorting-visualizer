@@ -83,3 +83,8 @@ $(document).on('input', '#speed_slider', function () {
     delay = delay * delay
     viewController.updateDelay = delay;
 });
+
+$(window).on('resize', function () {
+    viewController.render(data);
+    viewController.update(data, viewController.prevModifiedIndexes);
+});
