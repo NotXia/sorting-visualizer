@@ -4,6 +4,7 @@ import { SelectionSort } from "./js/algorithms/SelectionSort.js";
 import { MergeSort } from "./js/algorithms/MergeSort.js";
 import { QuickSort } from "./js/algorithms/QuickSort.js";
 import { InsertionSort } from "./js/algorithms/InsertionSort.js";
+import { BubbleSort } from "./js/algorithms/BubbleSort.js";
 
 function generate(size) {
     var out = [];
@@ -20,6 +21,9 @@ function getAlgorithm(data, viewController) {
 
         case "insertion":
             return new InsertionSort(data, viewController);
+
+        case "bubble":
+            return new BubbleSort(data, viewController);
 
         case "merge":
             return new MergeSort(data, viewController);
