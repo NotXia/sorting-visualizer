@@ -5,6 +5,7 @@ import { MergeSort } from "./js/algorithms/MergeSort.js";
 import { QuickSort } from "./js/algorithms/QuickSort.js";
 import { InsertionSort } from "./js/algorithms/InsertionSort.js";
 import { BubbleSort } from "./js/algorithms/BubbleSort.js";
+import { QuickSortRandom } from "./js/algorithms/QuickSortRandom.js";
 
 function generate(size) {
     var out = [];
@@ -31,12 +32,15 @@ function getAlgorithm(data, viewController) {
         case "quick":
             return new QuickSort(data, viewController);
 
+        case "quick_random":
+            return new QuickSortRandom(data, viewController);
+
         default:
             return null;
     }
 }
 
-var delay = 100;
+var delay = 500;
 var viewController = new ColumnsView("data_container", delay);
 var data = [];
 
