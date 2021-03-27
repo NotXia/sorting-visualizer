@@ -6,8 +6,6 @@ export class MergeSort extends Sort {
     }
 
     async start() {
-        await mergesort(this.data, 0, this.data.length-1, this.viewController);
-
         function getRange(start, end) {
             var out = [];
             for(start; start <= end; start++) {
@@ -16,47 +14,49 @@ export class MergeSort extends Sort {
             return out;
         }
 
-        async function merge(data, start, center, end, viewController) {
+        const merge = async (start, center, end) => {
             var i = start;
             var j = center + 1;
             var temp = [];
 
             while (i <= center && j <= end) {
-                if (data[i] < data[j]) {
-                    temp.push(data[i]);
+                if (this.data[i] < this.data[j]) {
+                    temp.push(this.data[i]);
                     i++;
                 }
                 else {
-                    temp.push(data[j]);
+                    temp.push(this.data[j]);
                     j++;
                 }
             }
 
             for (i; i <= center; i++) {
-                temp.push(data[i]);
+                temp.push(this.data[i]);
             }
             for (j; j <= end; j++) {
-                temp.push(data[j]);
+                temp.push(this.data[j]);
             }
 
             for (let i = start; i <= end; i++) {
-                data[i] = temp[i - start];
-                await viewController.update(data, [i]);
+                this.data[i] = temp[i - start];
+                await this.viewController.update(this.data, [i]);
             }
         }
 
-        async function mergesort(data, start, end, viewController) {
+        const mergesort = async (start, end) => {
             if (start < end) {
                 let center = Math.floor((start+end) / 2);
 
-                await viewController.update(data, getRange(start, center));
-                await mergesort(data, start, center, viewController);
+                await this.viewController.update(this.data, getRange(start, center));
+                await mergesort(start, center);
                 
-                await viewController.update(data, getRange(center+1, end));
-                await mergesort(data, center + 1, end, viewController);
+                await this.viewController.update(this.data, getRange(center+1, end));
+                await mergesort(center + 1, end);
     
-                await merge(data, start, center, end, viewController);
+                await merge(start, center, end);
             }
         }
+
+        await mergesort(0, this.data.length-1);
     }
 }
