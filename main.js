@@ -48,32 +48,34 @@ var executing = false;
 $("#start_button").click(async () => {
     if (!executing) {
         executing = true;
+        $("#view_toggle").prop("disabled", true);
+        $("#start_button").prop("disabled", true);
 
         data = generate(20);
         var sort = getAlgorithm(data, viewController);
-        $("#view_toggle").prop("disabled", true);
-    
         viewController.render(data);
         await sort.start();
         viewController.render(data);
     
         $("#view_toggle").prop("disabled", false);
-
+        $("#start_button").prop("disabled", false);
         executing = false;
     }
 });
 
 $("#view_toggle").change(() => {
-    if ($("#view_toggle").is(':checked')) {
-        viewController = new DotsView("data_container", delay);
-        $("#view_label").html("Dots");
+    if (!executing) {
+        if ($("#view_toggle").is(':checked')) {
+            viewController = new DotsView("data_container", delay);
+            $("#view_label").html("Dots");
+        }
+        else {
+            viewController = new ColumnsView("data_container", delay);
+            $("#view_label").html("Columns");
+        }
+    
+        viewController.render(data);
     }
-    else {
-        viewController = new ColumnsView("data_container", delay);
-        $("#view_label").html("Columns");
-    }
-
-    viewController.render(data);
 });
 
 $(document).on('input', '#speed_slider', function () {
