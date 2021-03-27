@@ -20,7 +20,12 @@
 
 
 
-.affected-data {
+.datastatus-modify {
     border: 1px solid #791818 !important;
     background-color: #b33e3e !important;
+}
+
+.datastatus-scan {
+    border: 1px solid #464646 !important;
+    background-color: #8d8d8d !important;
 }

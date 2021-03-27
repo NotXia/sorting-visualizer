@@ -24,7 +24,7 @@ function getAlgorithm(data, viewController) {
     }
 }
 
-var delay = 100;
+var delay = 500;
 var viewController = new ColumnsView("data_container", delay);
 var data = [];
 

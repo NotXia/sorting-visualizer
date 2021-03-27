@@ -49,17 +49,17 @@ export class DotsView extends View {
     async update(data, modifiedIndex) {
         var size = this.getDotSize(data);
 
-        this.prevModifiedIndexes.forEach(index => {
+        for (let index in this.prevModifiedIndexes) {
             let dot = $(`#${this.getDotId(index)}`);
-            dot.removeClass("affected-data");
-        });
+            dot.removeClass(`datastatus-${this.prevModifiedIndexes[index]}`);
+        }
 
         this.prevModifiedIndexes = modifiedIndex;
-        modifiedIndex.forEach(index => {
+        for (let index in modifiedIndex) {
             let dot = $(`#${this.getDotId(index)}`);
             dot.css({ marginBottom: `${(size.unit_height * data[index])}px` });
-            dot.addClass("affected-data");
-        });
+            dot.addClass(`datastatus-${modifiedIndex[index]}`);
+        }
 
         await new Promise(r => setTimeout(r, this.updateDelay));
     }

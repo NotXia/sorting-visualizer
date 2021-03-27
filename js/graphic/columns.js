@@ -41,18 +41,19 @@ export class ColumnsView extends View {
     /* Restores the previously modified columns and updates the new modified columns */
     async update(data, modifiedIndex) {
         var size = this.getColumnSize(data);
-        this.prevModifiedIndexes.forEach(index => {
+        
+        for (let index in this.prevModifiedIndexes) {
             let column = $(`#${this.getColumnId(index)}`);
-            column.removeClass("affected-data");
-        });
+            column.removeClass(`datastatus-${this.prevModifiedIndexes[index]}`);
+        }
 
         this.prevModifiedIndexes = modifiedIndex;
-        modifiedIndex.forEach(index => {
+        for (let index in modifiedIndex) {
             let column = $(`#${this.getColumnId(index)}`);
             column.css({ width: `${size.width}px`, height: `${(size.unit_height * data[index])}px` });
             column.html(`<span>${data[index]}</span>`)
-            column.addClass("affected-data");
-        });
+            column.addClass(`datastatus-${modifiedIndex[index]}`);
+        }
 
         await new Promise(r => setTimeout(r, this.updateDelay));
     }

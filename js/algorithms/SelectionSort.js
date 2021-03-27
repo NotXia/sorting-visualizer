@@ -12,13 +12,13 @@ export class SelectionSort extends Sort {
                 if (this.data[j] < this.data[minIndex]) {
                     minIndex = j;
                 }
-                await this.viewController.update(this.data, [i, j]);
+                await this.viewController.update(this.data, { [i]: "scan", [j]:"scan" });
             }
 
             let temp = this.data[minIndex];
             this.data[minIndex] = this.data[i];
             this.data[i] = temp;
-            await this.viewController.update(this.data, [i, minIndex]);
+            await this.viewController.update(this.data, { [i]: "modify", [minIndex]: "modify" });
         }
     }
 }

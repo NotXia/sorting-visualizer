@@ -6,10 +6,10 @@ export class MergeSort extends Sort {
     }
 
     async start() {
-        function getRange(start, end) {
-            var out = [];
+        function getRange(start, end, type) {
+            var out = {};
             for(start; start <= end; start++) {
-                out.push(start);
+                out[start] = type;
             }
             return out;
         }
@@ -39,7 +39,7 @@ export class MergeSort extends Sort {
 
             for (let i = start; i <= end; i++) {
                 this.data[i] = temp[i - start];
-                await this.viewController.update(this.data, [i]);
+                await this.viewController.update(this.data, { [i] : "modify" });
             }
         }
 
@@ -47,12 +47,13 @@ export class MergeSort extends Sort {
             if (start < end) {
                 let center = Math.floor((start+end) / 2);
 
-                await this.viewController.update(this.data, getRange(start, center));
+                await this.viewController.update(this.data, getRange(start, center, "scan"));
                 await mergesort(start, center);
                 
-                await this.viewController.update(this.data, getRange(center+1, end));
+                await this.viewController.update(this.data, getRange(center+1, end, "scan"));
                 await mergesort(center + 1, end);
-    
+
+                await this.viewController.update(this.data, getRange(start, end, "scan"));
                 await merge(start, center, end);
             }
         }

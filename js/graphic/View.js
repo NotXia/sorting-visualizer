@@ -7,7 +7,7 @@ export class View {
 
         this.container_id = container_id;
         this.updateDelay = updateDelay;
-        this.prevModifiedIndexes = [];
+        this.prevModifiedIndexes = {};
     }
 
     /* Renders the given array */
