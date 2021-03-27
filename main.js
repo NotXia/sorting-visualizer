@@ -68,3 +68,9 @@ $("#view_toggle").change(() => {
 
     viewController.render(data);
 });
+
+$(document).on('input', '#speed_slider', function () {
+    delay = 50 - $("#speed_slider").val() + 1;
+    delay = delay * delay
+    viewController.updateDelay = delay;
+});

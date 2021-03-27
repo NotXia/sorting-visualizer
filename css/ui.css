@@ -44,3 +44,11 @@ body {
     justify-content: center;
     width: 100%;
 }
+
+.option-group {
+    display: inline-block;
+}
+
+.speed-icon {
+    width: 2em;
+}
