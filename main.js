@@ -11,13 +11,26 @@ function generate(size) {
     return out;
 }
 
+function getAlgorithm(data, viewController) {
+    switch ($("#algorithm_select").val()) {
+        case "selection":
+            return new SelectionSort(data, viewController);
+
+        case "merge":
+            return new MergeSort(data, viewController);
+
+        default:
+            return null;
+    }
+}
+
 var delay = 100;
 var viewController = new ColumnsView("data_container", delay);
 var data = [];
 
 $("#start_button").click(async () => {
     data = generate(20);
-    var sort = new MergeSort(data, viewController);
+    var sort = getAlgorithm(data, viewController);
     $("#view_toggle").prop("disabled", true);
 
     viewController.render(data);
