@@ -51,7 +51,7 @@ $("#start_button").click(async () => {
         $("#view_toggle").prop("disabled", true);
         $("#start_button").prop("disabled", true);
 
-        data = generate(20);
+        data = generate($("#data_size_input").val());
         var sort = getAlgorithm(data, viewController);
         viewController.render(data);
         await sort.start();

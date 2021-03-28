@@ -80,3 +80,15 @@ body {
     height: 2em;
     font-size: 0.9em;
 }
+
+.data-size-container {
+    color: white;
+    margin-left: 1em;
+}
+
+.data-size-input {
+    width: 4em;
+    border-radius: 2em;
+    font-size: 1em;
+    text-align: center;
+}
