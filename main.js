@@ -59,6 +59,8 @@ var data = [];
 var executing = false;
 
 $("#generate_button").click(() => {
+    $("#reset_button").hide();
+    
     if (!executing) {
         data = generate($("#data_size_input").val());
         viewController.render(data);
@@ -66,6 +68,8 @@ $("#generate_button").click(() => {
 });
 
 $("#start_button").click(async () => {
+    $("#reset_button").hide();
+
     if (!executing) {
         executing = true;
         lock_ui();
