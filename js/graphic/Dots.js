@@ -15,8 +15,8 @@ export class DotsView extends View {
         var container = $(`#${this.container_id}`);
 
         return {
-            diameter: container.width() / data.length,
-            unit_height: (container.height() - 50) / Math.max(...data)
+            diameter: Math.floor(container.width() / data.length),
+            unit_height: Math.floor((container.height() - 50) / Math.max.apply(null, data))
         };
     }
 

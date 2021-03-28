@@ -15,8 +15,8 @@ export class ColumnsView extends View {
         var container = $(`#${this.container_id}`);
 
         return {
-            width: container.width() / data.length,
-            unit_height: (container.height() - 5) / Math.max(...data)
+            width: Math.floor(container.width() / data.length),
+            unit_height: Math.floor((container.height() - 5) / Math.max.apply(null, data))
         };
     }
 

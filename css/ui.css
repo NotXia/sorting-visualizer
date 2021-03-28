@@ -28,10 +28,9 @@ body {
     display: flex;
     align-items: flex-end; 
     border: 1px solid white;
-    width: 50vw;
-    height: 50vh;
-    overflow: auto;
-    overflow-y: hidden;
+    width: 60vw;
+    height: 60vh;
+    overflow: hidden;
 }
 
 /* phones */
