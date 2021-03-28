@@ -123,7 +123,7 @@ $("#reset_button").click(() => {
 });
 
 $(document).on('input', '#speed_slider', function () {
-    delay = 50 - $("#speed_slider").val() + 1;
+    delay = 50 - $("#speed_slider").val();
     delay = delay * delay
     viewController.updateDelay = delay;
 });
