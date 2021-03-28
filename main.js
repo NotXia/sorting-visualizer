@@ -40,25 +40,45 @@ function getAlgorithm(data, viewController) {
     }
 }
 
+function lock_ui() {
+    $("#view_toggle").prop("disabled", true);
+    $("#start_button").prop("disabled", true);
+    $("#generate_button").prop("disabled", true);
+}
+
+function unlock_ui() {
+    $("#view_toggle").prop("disabled", false);
+    $("#start_button").prop("disabled", false);
+    $("#generate_button").prop("disabled", false);
+}
+
 var delay = 500;
 var viewController = new ColumnsView("data_container", delay);
 var data = [];
 var executing = false;
 
+$("#generate_button").click(() => {
+    if (!executing) {
+        data = generate($("#data_size_input").val());
+        viewController.render(data);
+    }
+});
+
 $("#start_button").click(async () => {
     if (!executing) {
         executing = true;
-        $("#view_toggle").prop("disabled", true);
-        $("#start_button").prop("disabled", true);
+        lock_ui();
 
-        data = generate($("#data_size_input").val());
+        if (data.length <= 0) {
+            data = generate($("#data_size_input").val());
+        }
+
         var sort = getAlgorithm(data, viewController);
         viewController.render(data);
         await sort.start();
         viewController.render(data);
     
-        $("#view_toggle").prop("disabled", false);
-        $("#start_button").prop("disabled", false);
+        unlock_ui();
         executing = false;
     }
 });
