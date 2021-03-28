@@ -52,9 +52,13 @@ function unlock_ui() {
     $("#generate_button").prop("disabled", false);
 }
 
-$("#reset_button").hide();
 var delay = 500;
 var viewController = new ColumnsView("data_container", delay);
+
+$("#reset_button").hide();
+var reset = true;
+var old_data = []
+
 var data = [];
 var executing = false;
 
@@ -63,6 +67,7 @@ $("#generate_button").click(() => {
     
     if (!executing) {
         data = generate($("#data_size_input").val());
+        old_data = [];
         viewController.render(data);
     }
 });
@@ -78,16 +83,19 @@ $("#start_button").click(async () => {
             data = generate($("#data_size_input").val());
         }  
         
-        var data_copy = [...data];
+        if (reset) {
+            old_data = [...data];
+        }
 
-        var sort = getAlgorithm(data_copy, viewController);
-        viewController.render(data_copy);
+        var sort = getAlgorithm(data, viewController);
+        viewController.render(data);
         await sort.start();
-        viewController.render(data_copy);
-    
+        viewController.render(data);
+
         unlock_ui();
         executing = false;
         $("#reset_button").show();
+        reset = false;
     }
 });
 
@@ -108,6 +116,9 @@ $("#view_toggle").change(() => {
 
 $("#reset_button").click(() => {
     $("#reset_button").hide();
+    reset = true;
+    data = old_data;
+    old_data = [];
     viewController.render(data);
 });
 
