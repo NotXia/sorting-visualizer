@@ -42,6 +42,7 @@ body {
     }
 }
 
+
 .toolbar-group {
     display: flex; 
     justify-content: center;
@@ -55,6 +56,7 @@ body {
 .speed-icon {
     width: 2em;
 }
+
 
 .button {
     background-color: #577eb1;
@@ -73,6 +75,10 @@ body {
 .button:hover {
     background-color: #3e6eac;
 }
+.button:disabled {
+    background-color: #686868;
+    cursor: default;
+}
 
 .algorithm-select {
     border-radius: 0.5em;
@@ -80,6 +86,7 @@ body {
     height: 2em;
     font-size: 0.9em;
 }
+
 
 .data-size-container {
     color: white;
