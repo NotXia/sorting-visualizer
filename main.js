@@ -52,6 +52,7 @@ function unlock_ui() {
     $("#generate_button").prop("disabled", false);
 }
 
+$("#reset_button").hide();
 var delay = 500;
 var viewController = new ColumnsView("data_container", delay);
 var data = [];
@@ -71,15 +72,18 @@ $("#start_button").click(async () => {
 
         if (data.length <= 0) {
             data = generate($("#data_size_input").val());
-        }
+        }  
+        
+        var data_copy = [...data];
 
-        var sort = getAlgorithm(data, viewController);
-        viewController.render(data);
+        var sort = getAlgorithm(data_copy, viewController);
+        viewController.render(data_copy);
         await sort.start();
-        viewController.render(data);
+        viewController.render(data_copy);
     
         unlock_ui();
         executing = false;
+        $("#reset_button").show();
     }
 });
 
@@ -96,6 +100,11 @@ $("#view_toggle").change(() => {
     
         viewController.render(data);
     }
+});
+
+$("#reset_button").click(() => {
+    $("#reset_button").hide();
+    viewController.render(data);
 });
 
 $(document).on('input', '#speed_slider', function () {
