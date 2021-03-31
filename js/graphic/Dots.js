@@ -13,10 +13,11 @@ export class DotsView extends View {
     /* Returns the size for the dots adapted to the data length */
     getDotSize(data) {
         var container = $(`#${this.container_id}`);
+        var diameter = Math.floor(container.width() / data.length);
 
         return {
-            diameter: Math.floor(container.width() / data.length),
-            unit_height: Math.floor((container.height() - 50) / Math.max.apply(null, data))
+            diameter: diameter,
+            unit_height: Math.floor((container.height()-diameter) / (Math.max.apply(null, data)))
         };
     }
 
@@ -32,14 +33,10 @@ export class DotsView extends View {
                 .addClass("data-dot")
                 .attr({ id: this.getDotId(i) })
                 .css({ 
-                    width: `${size.diameter / 2}px`, 
-                    height: `${size.diameter / 2}px`,
-                    marginRight: `${size.diameter / 2}px`,
+                    width: `${size.diameter}px`, 
+                    height: `${size.diameter}px`,
                     marginBottom: `${(size.unit_height * data[i])}px` 
                 });
-            if (i === 0) {
-                dot.css({ marginLeft: `${size.diameter / 2}px`, })
-            }
 
             container.append(dot);
         }
