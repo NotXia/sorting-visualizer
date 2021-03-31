@@ -6,6 +6,7 @@ import { QuickSort } from "./js/algorithms/QuickSort.js";
 import { InsertionSort } from "./js/algorithms/InsertionSort.js";
 import { BubbleSort } from "./js/algorithms/BubbleSort.js";
 import { QuickSortRandom } from "./js/algorithms/QuickSortRandom.js";
+import { HeapSort } from "./js/algorithms/HeapSort.js";
 
 function generate(size) {
     var out = [];
@@ -34,6 +35,9 @@ function getAlgorithm(data, viewController) {
 
         case "quick_random":
             return new QuickSortRandom(data, viewController);
+
+        case "heap":
+            return new HeapSort(data, viewController);
 
         default:
             return null;
